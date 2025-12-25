@@ -2,10 +2,23 @@
     // document.getElementById("btn").onclick = function () {
     //   // alert("It works!");
     // };
-    let countText = document.getElementById("countText");
+      
     let count = 0;
-    document.getElementById("btn").onclick = function () {
+    let countText = document.getElementById("countText");
+    let btn = document.getElementById("btn");
+    let resetbtn = document.getElementById("resetbtn");
+
+
+    btn.onclick = function () {
       count++;
-      countText.innerText = "Clicked " + count + " times";
+      const word = count === 1? "time" : "times";
+      countText.innerText = `Clicked ${count} ${word}`;
     };
+
+    if(resetbtn){
+    resetbtn.onclick = function (){
+        count = 0;
+        countText.innerText = "Clicked 0 times";
+    }
+};
   
