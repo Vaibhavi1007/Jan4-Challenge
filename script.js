@@ -1,24 +1,40 @@
- 
-    // document.getElementById("btn").onclick = function () {
-    //   // alert("It works!");
-    // };
-      
-    let count = 0;
-    let countText = document.getElementById("countText");
-    let btn = document.getElementById("btn");
-    let resetbtn = document.getElementById("resetbtn");
+const counter = {
+    count: 0,
 
+    increment() {
+        this.count++;
+        this.updateText();
+    },
 
-    btn.onclick = function () {
-      count++;
-      const word = count === 1? "time" : "times";
-      countText.innerText = `Clicked ${count} ${word}`;
-    };
+    reset() {
+        this.count = 0;
+        this.updateText();
+    },
 
-    if(resetbtn){
-    resetbtn.onclick = function (){
-        count = 0;
-        countText.innerText = "Clicked 0 times";
+    add(value){
+        if(value > 0){
+        for (let index = 0; index < value; index++) {
+            this.increment();
+        }
+    }
+    },
+
+    updateText() {
+        const word = this.count === 1 ? "time" : "times";
+        if(countText){
+        countText.innerText = `Clicked ${this.count} ${word}`;
+        }
     }
 };
+
+let btn = document.getElementById("btn");
+let countText = document.getElementById("countText");
+
+btn.addEventListener("click", function () {
+    counter.increment();
+});
+
+resetbtn.addEventListener("click" , function() {
+    counter.reset();
+});
   
